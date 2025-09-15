@@ -1,0 +1,162 @@
+Starting simulation with depth 4. Max steps: 10
+
+Current Board:
+Row 0: . . . . . .
+Row 1: . . . . . .
+Row 2: . . O O . .
+Row 3: . . X X . .
+Row 4: . . X O . .
+Row 5: . . X O . .
+----------------
+
+--- Step 1: Player 1 (X)'s turn ---
+Evaluating 28 possible moves at depth 4...
+Move (0, 0) (row 0, col 0): Minimax score = -1000000
+Move (0, 1) (row 0, col 1): Minimax score = -1000000
+Move (0, 2) (row 0, col 2): Minimax score = -1000000
+Move (0, 3) (row 0, col 3): Minimax score = -1000000
+Move (0, 4) (row 0, col 4): Minimax score = -1000000
+Move (0, 5) (row 0, col 5): Minimax score = -1000000
+Move (1, 0) (row 1, col 0): Minimax score = -1000000
+Move (1, 1) (row 1, col 1): Minimax score = -1000000
+Move (1, 2) (row 1, col 2): Minimax score = -1000000
+Move (1, 3) (row 1, col 3): Minimax score = -1000000
+Move (1, 4) (row 1, col 4): Minimax score = -1000000
+Move (1, 5) (row 1, col 5): Minimax score = -1000000
+Move (2, 0) (row 2, col 0): Minimax score = -1000000
+Move (2, 1) (row 2, col 1): Minimax score = -208
+Move (2, 4) (row 2, col 4): Minimax score = 1000000
+Move (2, 5) (row 2, col 5): Minimax score = -1000000
+Move (3, 0) (row 3, col 0): Minimax score = -117
+Move (3, 1) (row 3, col 1): Minimax score = 1000000
+Move (3, 4) (row 3, col 4): Minimax score = 1000000
+Move (3, 5) (row 3, col 5): Minimax score = -85
+Move (4, 0) (row 4, col 0): Minimax score = -1000000
+Move (4, 1) (row 4, col 1): Minimax score = -1000000
+Move (4, 4) (row 4, col 4): Minimax score = -1000000
+Move (4, 5) (row 4, col 5): Minimax score = -1000000
+Move (5, 0) (row 5, col 0): Minimax score = -1000000
+Move (5, 1) (row 5, col 1): Minimax score = -1000000
+Move (5, 4) (row 5, col 4): Minimax score = -1000000
+Move (5, 5) (row 5, col 5): Minimax score = -1000000
+
+Top 5 moves ranked by score:
+1. Move (2, 4): Score = 1000000 (Evidence: Minimax evaluation after opponent's best response)
+2. Move (3, 1): Score = 1000000 (Evidence: Minimax evaluation after opponent's best response)
+3. Move (3, 4): Score = 1000000 (Evidence: Minimax evaluation after opponent's best response)
+4. Move (3, 5): Score = -85 (Evidence: Minimax evaluation after opponent's best response)
+5. Move (3, 0): Score = -117 (Evidence: Minimax evaluation after opponent's best response)
+
+Best move: (2, 4) with score 1000000
+Player 1 (X) plays at (2, 4) (row 2, col 4) with score 1000000
+
+Current Board:
+Row 0: . . . . . .
+Row 1: . . . . . .
+Row 2: . . O O X .
+Row 3: . . X X . .
+Row 4: . . X O . .
+Row 5: . . X O . .
+----------------
+
+--- Step 2: Player -1 (O)'s turn ---
+Evaluating 27 possible moves at depth 4...
+Move (0, 0) (row 0, col 0): Minimax score = inf
+Move (0, 1) (row 0, col 1): Minimax score = inf
+Move (0, 2) (row 0, col 2): Minimax score = inf
+Move (0, 3) (row 0, col 3): Minimax score = inf
+Move (0, 4) (row 0, col 4): Minimax score = inf
+Move (0, 5) (row 0, col 5): Minimax score = inf
+Move (1, 0) (row 1, col 0): Minimax score = inf
+Move (1, 1) (row 1, col 1): Minimax score = inf
+Move (1, 2) (row 1, col 2): Minimax score = inf
+Move (1, 3) (row 1, col 3): Minimax score = inf
+Move (1, 4) (row 1, col 4): Minimax score = inf
+Move (1, 5) (row 1, col 5): Minimax score = inf
+Move (2, 0) (row 2, col 0): Minimax score = inf
+Move (2, 1) (row 2, col 1): Minimax score = inf
+Move (2, 5) (row 2, col 5): Minimax score = inf
+Move (3, 0) (row 3, col 0): Minimax score = inf
+Move (3, 1) (row 3, col 1): Minimax score = inf
+Move (3, 4) (row 3, col 4): Minimax score = inf
+Move (3, 5) (row 3, col 5): Minimax score = inf
+Move (4, 0) (row 4, col 0): Minimax score = inf
+Move (4, 1) (row 4, col 1): Minimax score = inf
+Move (4, 4) (row 4, col 4): Minimax score = inf
+Move (4, 5) (row 4, col 5): Minimax score = inf
+Move (5, 0) (row 5, col 0): Minimax score = inf
+Move (5, 1) (row 5, col 1): Minimax score = inf
+Move (5, 4) (row 5, col 4): Minimax score = inf
+Move (5, 5) (row 5, col 5): Minimax score = inf
+
+Top 5 moves ranked by score:
+1. Move (0, 0): Score = inf (Evidence: Minimax evaluation after opponent's best response)
+2. Move (0, 1): Score = inf (Evidence: Minimax evaluation after opponent's best response)
+3. Move (0, 2): Score = inf (Evidence: Minimax evaluation after opponent's best response)
+4. Move (0, 3): Score = inf (Evidence: Minimax evaluation after opponent's best response)
+5. Move (0, 4): Score = inf (Evidence: Minimax evaluation after opponent's best response)
+
+Best move: (0, 0) with score inf
+Player -1 (O) plays at (0, 0) (row 0, col 0) with score inf
+
+Current Board:
+Row 0: O . . . . .
+Row 1: . . . . . .
+Row 2: . . O O X .
+Row 3: . . X X . .
+Row 4: . . X O . .
+Row 5: . . X O . .
+----------------
+
+--- Step 3: Player 1 (X)'s turn ---
+Evaluating 26 possible moves at depth 4...
+Move (0, 1) (row 0, col 1): Minimax score = 1000000
+Move (0, 2) (row 0, col 2): Minimax score = 1000000
+Move (0, 3) (row 0, col 3): Minimax score = 1000000
+Move (0, 4) (row 0, col 4): Minimax score = 1000000
+Move (0, 5) (row 0, col 5): Minimax score = 1000000
+Move (1, 0) (row 1, col 0): Minimax score = 1000000
+Move (1, 1) (row 1, col 1): Minimax score = 1000000
+Move (1, 2) (row 1, col 2): Minimax score = 1000000
+Move (1, 3) (row 1, col 3): Minimax score = 1000000
+Move (1, 4) (row 1, col 4): Minimax score = 1000000
+Move (1, 5) (row 1, col 5): Minimax score = inf
+Move (2, 0) (row 2, col 0): Minimax score = 1000000
+Move (2, 1) (row 2, col 1): Minimax score = 1000000
+Move (2, 5) (row 2, col 5): Minimax score = 1000000
+Move (3, 0) (row 3, col 0): Minimax score = 1000000
+Move (3, 1) (row 3, col 1): Minimax score = 1000000
+Move (3, 4) (row 3, col 4): Minimax score = 1000000
+Move (3, 5) (row 3, col 5): Minimax score = 1000000
+Move (4, 0) (row 4, col 0): Minimax score = 1000000
+Move (4, 1) (row 4, col 1): Minimax score = 1000000
+Move (4, 4) (row 4, col 4): Minimax score = 1000000
+Move (4, 5) (row 4, col 5): Minimax score = 1000000
+Move (5, 0) (row 5, col 0): Minimax score = 1000000
+Move (5, 1) (row 5, col 1): Minimax score = inf
+Move (5, 4) (row 5, col 4): Minimax score = 1000000
+Move (5, 5) (row 5, col 5): Minimax score = 1000000
+
+Top 5 moves ranked by score:
+1. Move (1, 5): Score = inf (Evidence: Minimax evaluation after opponent's best response)
+2. Move (5, 1): Score = inf (Evidence: Minimax evaluation after opponent's best response)
+3. Move (0, 1): Score = 1000000 (Evidence: Minimax evaluation after opponent's best response)
+4. Move (0, 2): Score = 1000000 (Evidence: Minimax evaluation after opponent's best response)
+5. Move (0, 3): Score = 1000000 (Evidence: Minimax evaluation after opponent's best response)
+
+Best move: (1, 5) with score inf
+Player 1 (X) plays at (1, 5) (row 1, col 5) with score inf
+
+Current Board:
+Row 0: O . . . . .
+Row 1: . . . . . X
+Row 2: . . O O X .
+Row 3: . . X X . .
+Row 4: . . X O . .
+Row 5: . . X O . .
+----------------
+
+--- Step 4: Player -1 (O)'s turn ---
+Player 1 wins!
+
+Simulation ended after 4 steps.

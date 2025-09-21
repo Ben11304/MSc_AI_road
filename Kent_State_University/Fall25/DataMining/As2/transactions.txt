@@ -1,0 +1,5 @@
+milk bread eggs
+bread cheese
+milk bread cheese
+eggs cheese
+milk eggs

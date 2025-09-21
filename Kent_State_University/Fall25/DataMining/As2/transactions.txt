@@ -1,5 +1,16 @@
-milk bread eggs
+bread
+butter
+cheese
+eggs
+jam
+milk
+yogurt
 bread cheese
-milk bread cheese
+butter cheese
+butter jam
 eggs cheese
+milk bread
+milk cheese
 milk eggs
+bread cheese milk
+bread eggs milk

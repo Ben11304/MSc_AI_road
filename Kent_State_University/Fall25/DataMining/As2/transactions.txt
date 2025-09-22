@@ -8,9 +8,32 @@ yogurt
 bread cheese
 butter cheese
 butter jam
+bread eggs milk
+bread butter cheese
+butter
+cheese eggs milk
 eggs cheese
 milk bread
 milk cheese
 milk eggs
 bread cheese milk
 bread eggs milk
+bread cheese
+butter cheese
+butter jam
+bread
+butter
+cheese
+eggs
+jam
+milk
+yogurt
+eggs cheese
+milk bread
+milk cheese
+milk eggs
+bread cheese milk
+bread eggs milk
+bread butter cheese
+butter
+cheese eggs milk

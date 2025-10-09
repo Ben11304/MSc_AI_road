@@ -1,0 +1,77 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{sys}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{collections}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{defaultdict}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{math}
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{find\PYGZus{}frequent\PYGZus{}1\PYGZus{}itemsets}\PYG{p}{(}\PYG{n}{transactions}\PYG{p}{,} \PYG{n}{min\PYGZus{}support\PYGZus{}count}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{item\PYGZus{}counts} \PYG{o}{=} \PYG{n}{defaultdict}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{)}
+    \PYG{k}{for} \PYG{n}{transaction} \PYG{o+ow}{in} \PYG{n}{transactions}\PYG{p}{:}
+        \PYG{k}{for} \PYG{n}{item} \PYG{o+ow}{in} \PYG{n}{transaction}\PYG{p}{:}
+            \PYG{n}{item\PYGZus{}counts}\PYG{p}{[}\PYG{n}{item}\PYG{p}{]}\PYG{o}{+}\PYG{o}{=}\PYG{l+m+mi}{1}
+    \PYG{n}{frequent\PYGZus{}items} \PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n+nb}{frozenset}\PYG{p}{(}\PYG{p}{[}\PYG{n}{item}\PYG{p}{]}\PYG{p}{)}\PYG{p}{:}\PYG{n}{count} \PYG{k}{for} \PYG{n}{item}\PYG{p}{,}\PYG{n}{count} \PYG{o+ow}{in} \PYG{n}{item\PYGZus{}counts}\PYG{o}{.}\PYG{n}{items}\PYG{p}{(}\PYG{p}{)} \PYG{k}{if} \PYG{n}{count}\PYG{o}{\PYGZgt{}}\PYG{o}{=}\PYG{n}{min\PYGZus{}support\PYGZus{}count}\PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{n}{frequent\PYGZus{}items}
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{generate\PYGZus{}candidates}\PYG{p}{(}\PYG{n}{prev\PYGZus{}frequent}\PYG{p}{,} \PYG{n}{k}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{candidates}\PYG{o}{=} \PYG{n+nb}{set}\PYG{p}{(}\PYG{p}{)}
+    \PYG{n}{prev\PYGZus{}items}\PYG{o}{=} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{prev\PYGZus{}frequent}\PYG{o}{.}\PYG{n}{keys}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{prev\PYGZus{}items}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
+        \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{prev\PYGZus{}items}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
+            \PYG{n}{set1}\PYG{o}{=} \PYG{n}{prev\PYGZus{}items}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}
+            \PYG{n}{set2} \PYG{o}{=}\PYG{n}{prev\PYGZus{}items}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}
+            \PYG{n}{union} \PYG{o}{=}\PYG{n}{set1}\PYG{o}{|}\PYG{n}{set2}
+            \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{union}\PYG{p}{)}\PYG{o}{==} \PYG{n}{k}\PYG{p}{:}
+                \PYG{n}{candidates}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{union}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{candidates}
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{count\PYGZus{}supports}\PYG{p}{(}\PYG{n}{candidates}\PYG{p}{,}\PYG{n}{transactions}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{supports} \PYG{o}{=}\PYG{n}{defaultdict}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{)}
+    \PYG{k}{for} \PYG{n}{transaction} \PYG{o+ow}{in} \PYG{n}{transactions}\PYG{p}{:}
+        \PYG{k}{for} \PYG{n}{candidate} \PYG{o+ow}{in} \PYG{n}{candidates}\PYG{p}{:}
+            \PYG{k}{if} \PYG{n}{candidate}\PYG{o}{.}\PYG{n}{issubset}\PYG{p}{(}\PYG{n}{transaction}\PYG{p}{)}\PYG{p}{:}
+                \PYG{n}{supports}\PYG{p}{[}\PYG{n}{candidate}\PYG{p}{]} \PYG{o}{+}\PYG{o}{=}\PYG{l+m+mi}{1}
+    \PYG{k}{return} \PYG{n}{supports}
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{filename} \PYG{o}{=} \PYG{n}{sys}\PYG{o}{.}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}
+    \PYG{k}{try}\PYG{p}{:}
+        \PYG{n}{min\PYGZus{}support\PYGZus{}perc} \PYG{o}{=} \PYG{n+nb}{float}\PYG{p}{(}\PYG{n}{sys}\PYG{o}{.}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}
+    \PYG{k}{except} \PYG{n+ne}{ValueError}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{lack of minimum fequent percentage}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+        \PYG{n}{sys}\PYG{o}{.}\PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+    \PYG{k}{try}\PYG{p}{:}
+        \PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+            \PYG{n}{transactions} \PYG{o}{=} \PYG{p}{[}\PYG{n+nb}{set}\PYG{p}{(}\PYG{n}{line}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)} \PYG{k}{for} \PYG{n}{line} \PYG{o+ow}{in} \PYG{n}{f} \PYG{k}{if} \PYG{n}{line}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]}
+    \PYG{k}{except} \PYG{n+ne}{FileNotFoundError}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{File }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{filename}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ not available}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+        \PYG{n}{sys}\PYG{o}{.}\PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+
+    \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{transactions}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{No transactions}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+        \PYG{k}{return}
+
+    \PYG{n}{total\PYGZus{}transactions} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{transactions}\PYG{p}{)}
+    \PYG{n}{min\PYGZus{}support\PYGZus{}count} \PYG{o}{=}\PYG{n}{math}\PYG{o}{.}\PYG{n}{ceil}\PYG{p}{(}\PYG{p}{(}\PYG{n}{min\PYGZus{}support\PYGZus{}perc} \PYG{o}{/} \PYG{l+m+mi}{100}\PYG{p}{)} \PYG{o}{*} \PYG{n}{total\PYGZus{}transactions}\PYG{p}{)}
+
+    \PYG{n}{frequent\PYGZus{}itemsets} \PYG{o}{=} \PYG{n}{find\PYGZus{}frequent\PYGZus{}1\PYGZus{}itemsets}\PYG{p}{(}\PYG{n}{transactions}\PYG{p}{,} \PYG{n}{min\PYGZus{}support\PYGZus{}count}\PYG{p}{)}
+    \PYG{n}{all\PYGZus{}frequent} \PYG{o}{=} \PYG{n}{frequent\PYGZus{}itemsets}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{p}{)}
+
+    \PYG{n}{k} \PYG{o}{=} \PYG{l+m+mi}{2}
+    \PYG{k}{while} \PYG{n}{frequent\PYGZus{}itemsets}\PYG{p}{:}
+        \PYG{n}{candidates} \PYG{o}{=} \PYG{n}{generate\PYGZus{}candidates}\PYG{p}{(}\PYG{n}{frequent\PYGZus{}itemsets}\PYG{p}{,} \PYG{n}{k}\PYG{p}{)}
+        \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{candidates}\PYG{p}{:}
+            \PYG{k}{break}
+        \PYG{n}{supports} \PYG{o}{=}\PYG{n}{count\PYGZus{}supports}\PYG{p}{(}\PYG{n}{candidates}\PYG{p}{,} \PYG{n}{transactions}\PYG{p}{)}
+        \PYG{n}{frequent\PYGZus{}itemsets} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{itemset}\PYG{p}{:} \PYG{n}{count} \PYG{k}{for} \PYG{n}{itemset}\PYG{p}{,} \PYG{n}{count} \PYG{o+ow}{in} \PYG{n}{supports}\PYG{o}{.}\PYG{n}{items}\PYG{p}{(}\PYG{p}{)} \PYG{k}{if} \PYG{n}{count} \PYG{o}{\PYGZgt{}}\PYG{o}{=} \PYG{n}{min\PYGZus{}support\PYGZus{}count}\PYG{p}{\PYGZcb{}}
+        \PYG{n}{all\PYGZus{}frequent}\PYG{o}{.}\PYG{n}{update}\PYG{p}{(}\PYG{n}{frequent\PYGZus{}itemsets}\PYG{p}{)}
+        \PYG{n}{k} \PYG{o}{+}\PYG{o}{=}\PYG{l+m+mi}{1}
+
+    \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{sys}\PYG{o}{.}\PYG{n}{argv}\PYG{p}{)} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{3} \PYG{o+ow}{and} \PYG{n}{sys}\PYG{o}{.}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}
+        \PYG{k}{for} \PYG{n}{itemset} \PYG{o+ow}{in} \PYG{n+nb}{sorted}\PYG{p}{(}\PYG{n}{all\PYGZus{}frequent}\PYG{o}{.}\PYG{n}{keys}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{n}{key}\PYG{o}{=}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{,} \PYG{n+nb}{sorted}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ }\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n+nb}{sorted}\PYG{p}{(}\PYG{n}{itemset}\PYG{p}{)}\PYG{p}{)} \PYG{o}{+} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ (support: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{all\PYGZus{}frequent}\PYG{p}{[}\PYG{n}{itemset}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ with frequent: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{all\PYGZus{}frequent}\PYG{p}{[}\PYG{n}{itemset}\PYG{p}{]}\PYG{o}{*}\PYG{l+m+mi}{100}\PYG{o}{/}\PYG{n}{total\PYGZus{}transactions}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZpc{})}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{)}
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{k}{for} \PYG{n}{itemset} \PYG{o+ow}{in} \PYG{n+nb}{sorted}\PYG{p}{(}\PYG{n}{all\PYGZus{}frequent}\PYG{o}{.}\PYG{n}{keys}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{n}{key}\PYG{o}{=}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{,} \PYG{n+nb}{sorted}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ }\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n+nb}{sorted}\PYG{p}{(}\PYG{n}{itemset}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
+
+\PYG{k}{if} \PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZus{}\PYGZus{}main\PYGZus{}\PYGZus{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}
+    \PYG{n}{main}\PYG{p}{(}\PYG{p}{)}
+\end{MintedVerbatim}

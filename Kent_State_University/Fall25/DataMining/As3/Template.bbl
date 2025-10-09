@@ -1,0 +1,12 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{srikant1996}
+R.~Srikant, R.~Agrawal, Mining quantitative association rules in large relational tables, ACM SIGMOD Record 25~(1) (1996) 1--10.
+\newblock \href {https://doi.org/10.1145/235968.233311} {\path{doi:10.1145/235968.233311}}.
+
+\end{thebibliography}
